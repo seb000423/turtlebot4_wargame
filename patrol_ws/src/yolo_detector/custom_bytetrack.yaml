@@ -1,0 +1,12 @@
+# custom_bytetrack.yaml
+tracker_type: bytetrack  # tracker type, ['botsort', 'bytetrack']
+track_high_thresh: 0.5   # threshold for the first association
+track_low_thresh: 0.1    # threshold for the second association
+new_track_thresh: 0.6    # threshold for init new track if the detection does not match any tracks
+
+# track_buffer: 트랙(아이디)을 잃어버렸을 때 얼마나 오랫동안 기억할지 결정하는 프레임 수입니다.
+# 기본값은 보통 30입니다 (30fps 기준 1초).
+# 이 값을 90, 150 등으로 늘리면 물체가 가려지거나 화면 밖으로 나갔다 들어와도 동일한 ID를 더 오래 유지합니다.
+track_buffer: 90
+
+match_thresh: 0.8        # threshold for matching tracks
