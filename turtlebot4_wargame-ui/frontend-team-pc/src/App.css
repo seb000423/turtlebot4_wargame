@@ -1,0 +1,425 @@
+:root {
+  color-scheme: light;
+  --bg: #f7f7f2;
+  --panel: #ffffff;
+  --border: #dcdcd0;
+  --text: #23261f;
+  --muted: #6f7566;
+  --blue: #2f5fb3;
+  --red: #c23b32;
+  --ok: #4b6b35;
+  --wait: #9c6b0a;
+  --accent: #4b5320;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 24px;
+  background: var(--panel);
+  border-bottom: 3px solid var(--accent);
+}
+
+.app--blue .banner {
+  border-bottom-color: var(--blue);
+}
+.app--red .banner {
+  border-bottom-color: var(--red);
+}
+
+.banner__team {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.banner__state {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  font-size: 13px;
+}
+
+.banner__conn {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--muted);
+}
+.banner__conn--connected {
+  color: var(--ok);
+}
+
+.grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+  padding: 16px;
+}
+
+.grid__side {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(35, 38, 31, 0.06);
+}
+
+.panel h2 {
+  margin: 0 0 12px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.status-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stat__label {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.stat__value {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.hp-bar {
+  display: flex;
+  gap: 4px;
+}
+
+.hp-cell {
+  width: 22px;
+  height: 14px;
+  border-radius: 3px;
+  background: var(--border);
+}
+.hp-cell--full {
+  background: var(--ok);
+}
+
+.badge {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--border);
+}
+.badge--ok {
+  background: rgba(75, 107, 53, 0.14);
+  color: var(--ok);
+}
+.badge--wait {
+  background: rgba(156, 107, 10, 0.14);
+  color: var(--wait);
+}
+
+.alert {
+  margin-top: 8px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: rgba(194, 59, 50, 0.12);
+  color: var(--red);
+  font-weight: 700;
+  text-align: center;
+}
+
+.approve-box {
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--red);
+  background: rgba(194, 59, 50, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  animation: approve-pulse 1.2s ease-in-out infinite;
+}
+
+.approve-box__msg {
+  margin: 0;
+  font-weight: 700;
+  color: var(--red);
+  text-align: center;
+  font-size: 13px;
+}
+
+.approve-box__btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: var(--red);
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+.approve-box__btn:hover:not(:disabled) {
+  opacity: 0.9;
+}
+.approve-box__btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+@keyframes approve-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(194, 59, 50, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(194, 59, 50, 0);
+  }
+}
+
+/* 장전(탄약) 표시 — HP 바와 같은 결의 pip + "N / 5" 텍스트 */
+.ammo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ammo-bar {
+  display: flex;
+  gap: 4px;
+}
+.ammo-cell {
+  width: 12px;
+  height: 16px;
+  border-radius: 3px;
+  background: var(--border);
+  transition: background 0.2s;
+}
+.ammo-cell--live {
+  background: var(--accent);
+}
+
+.reload-badge {
+  font-variant-numeric: tabular-nums;
+}
+
+/* 발사 승인 대기 시 화면 전체에 번쩍이는 응급 경광등(빨간 비네트) */
+.emergency-flash {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  animation: emergency-strobe 0.9s ease-in-out infinite;
+}
+@keyframes emergency-strobe {
+  0%,
+  100% {
+    background: rgba(194, 59, 50, 0);
+    box-shadow: inset 0 0 0 0 rgba(194, 59, 50, 0);
+  }
+  50% {
+    background: rgba(194, 59, 50, 0.12);
+    box-shadow: inset 0 0 140px 24px rgba(194, 59, 50, 0.55);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .emergency-flash {
+    animation: none;
+    background: rgba(194, 59, 50, 0.1);
+    box-shadow: inset 0 0 120px 20px rgba(194, 59, 50, 0.4);
+  }
+}
+
+.camera-view {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.camera-view__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.camera-view__placeholder {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.mock-tag {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(156, 107, 10, 0.9);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.bbox {
+  position: absolute;
+  border: 2px solid var(--ok);
+  border-radius: 3px;
+}
+
+.bbox__label {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  font-size: 11px;
+  background: var(--ok);
+  color: #fff;
+  padding: 1px 6px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.banner__logout {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.banner__logout:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+}
+
+.login__card {
+  width: 320px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 2px 8px rgba(35, 38, 31, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.login__title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--text);
+}
+
+.login__subtitle {
+  margin: 0 0 4px;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.login__tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.login__tab {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--muted);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.login__tab--active.login__tab--blue {
+  background: rgba(47, 95, 179, 0.12);
+  border-color: var(--blue);
+  color: var(--blue);
+}
+.login__tab--active.login__tab--red {
+  background: rgba(194, 59, 50, 0.1);
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.login__input {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.login__error {
+  margin: 0;
+  color: var(--red);
+  font-size: 13px;
+  text-align: center;
+}
+
+.login__submit {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+.login__submit:hover {
+  opacity: 0.9;
+}
