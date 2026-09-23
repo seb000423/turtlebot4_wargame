@@ -1,0 +1,35 @@
+# --- ROS2 / colcon ---
+build/
+install/
+log/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# --- Node / 프론트엔드 ---
+node_modules/
+dist/
+.vite/
+
+# --- 학습 산출물 / 데이터셋 (용량 문제로 제외) ---
+runs/
+dataset/
+datasets/
+
+# --- DB / 로그 ---
+*.db
+*.log
+
+# --- OS / 에디터 ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# 카메라 점검용 캡처 이미지
+turtlebot4_wargame-ui/judge-vision/probe_*.jpg
+turtlebot4_wargame-ui/judge-vision/msmf_*.jpg

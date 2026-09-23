@@ -1,0 +1,9 @@
+# 이 프로젝트는 Ubuntu/ROS2 에서 실행되므로 텍스트 파일은 항상 LF 로 체크아웃합니다.
+# (CRLF 로 받으면 .sh 스크립트가 로봇에서 bad interpreter 오류로 죽습니다)
+* text=auto eol=lf
+
+# 바이너리
+*.pt  binary
+*.jpg binary
+*.png binary
+*.db  binary
